@@ -41,7 +41,7 @@ WindParas = [10];
 % WindParas = [.35];
 
 
-xl = [];
+xl = zeros(1,1000); % Pre-allocate matrix for increased performance
 
 for n = 1: nSims
     x(1, :) = zeros(1, nTraj);
@@ -70,8 +70,8 @@ for n = 1: nSims
     xl = [xl x(end, :)];
 end
 
-if doPlot
-    imwrite(im, map, 'imagefile.gif', 'DelayTime', 0, 'LoopCount', inf);
-    figure
-end
-
+% Plot
+figure('name','Trajectories'); hold on;
+plot(x,y,'b'); grid on;
+title('Trajectory Plot')
+xlabel('X-position'); ylabel('Y-position');
